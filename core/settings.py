@@ -7,6 +7,7 @@ PORT = int(os.environ.get("PORT", 8000))  # Par défaut, 8000 si non défini
 
 load_dotenv()
 
+CSRF_TRUSTED_ORIGINS = ["https://db-ben.up.railway.app"]
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "os.getenv('DJANGO_SECRET_KEY', 'your-secret-key')"
