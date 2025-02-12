@@ -3,15 +3,17 @@ from datetime import timedelta
 from pathlib import Path
 from dotenv import load_dotenv
 
+PORT = int(os.environ.get("PORT", 8000))  # Par défaut, 8000 si non défini
+
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-secret-key')
+SECRET_KEY = "os.getenv('DJANGO_SECRET_KEY', 'your-secret-key')"
 
 DEBUG = True  # Forcer le mode DEBUG pour le développement
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
