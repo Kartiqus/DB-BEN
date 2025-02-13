@@ -9,6 +9,26 @@ from .serializers import (
     CategorySerializer, ProductSerializer, ReviewSerializer, WishlistSerializer
 )
 
+from rest_framework import generics
+from .models import Order
+from .serializers import OrderSerializer, CreateOrderSerializer
+
+class OrderListView(generics.ListAPIView):
+    """ Liste toutes les commandes """
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+class OrderDetailView(generics.RetrieveAPIView):
+    """ Affiche une commande spécifique """
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+class CreateOrderView(generics.CreateAPIView):
+    """ Crée une nouvelle commande """
+    queryset = Order.objects.all()
+    serializer_class = CreateOrderSerializer
+
+
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Category.objects.filter(is_active=True)
     serializer_class = CategorySerializer
