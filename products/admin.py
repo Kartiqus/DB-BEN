@@ -8,7 +8,7 @@ class ProductImageInline(admin.TabularInline):
 class ReviewInline(admin.TabularInline):
     model = Review
     extra = 0
-    readonly_fields = ('user', 'rating', 'comment', 'created_at')
+    readonly_fields = ( 'rating', 'comment', 'created_at')
     can_delete = False
 
 @admin.register(Category)
@@ -52,15 +52,14 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('product', 'user', 'rating', 'is_verified_purchase', 'created_at')
+    list_display = ('product', 'rating', 'is_verified_purchase', 'created_at')
     list_filter = ('rating', 'is_verified_purchase', 'created_at')
-    search_fields = ('product__name', 'user__email', 'comment')
+    search_fields = ('product__name', 'comment')
     readonly_fields = ('created_at',)
 
 @admin.register(Wishlist)
 class WishlistAdmin(admin.ModelAdmin):
-    list_display = ('user', 'product_count', 'created_at')
-    search_fields = ('user__email',)
+    list_display = ( 'product_count', 'created_at')
     filter_horizontal = ('products',)
 
     def product_count(self, obj):

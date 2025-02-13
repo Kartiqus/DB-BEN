@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
-from users.models import User
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -72,17 +72,15 @@ class ProductImage(models.Model):
 
 class Review(models.Model):
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
     rating = models.IntegerField()
     comment = models.TextField()
     is_verified_purchase = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        unique_together = ('product', 'user')
 
 class Wishlist(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
     products = models.ManyToManyField(Product)
     created_at = models.DateTimeField(auto_now_add=True)
 
